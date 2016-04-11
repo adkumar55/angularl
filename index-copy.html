@@ -1,0 +1,40 @@
+<html ng-app="fetch">
+    <head>
+    <title>AngularJS GET request with PHP</title>
+      <link rel="stylesheet" href="//maxcdn.bootstrapcdn.com/bootstrap/3.2.0/css/bootstrap.min.css">
+            <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.2.24/angular.min.js"></script>
+    </head>
+
+    <body>
+    <br>
+      <div class="row">
+        <div class="container">
+          <h1>Angular $http GET Ajax Call</h1>
+    <div ng-controller="MyController">
+    <button type="button" ng-click="getItems()">Get Items</button>
+    <ul>
+       <li ng-repeat="item in items"> item.Title </li>
+    </ul>
+</div>
+
+        </div>
+      </div>
+    </body>
+
+    <script>
+ function MyController($scope, $http) {
+        $scope.items = []
+
+        $scope.getItems = function() {
+         $http({method : 'GET',url : 'http://192.168.7.11:8079/Help/Api/GET-api-Values_URL'})
+            .success(function(data, status) {
+                $scope.items = data;
+             })
+            .error(function(data, status) {
+                alert("Error");
+            )}
+        }
+    }
+    </script>
+
+    </html>
